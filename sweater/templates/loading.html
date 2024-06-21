@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<body class="bg-body-tertiary b-example-divider">
+
+  
+    <div class="container py-5">
+      <img src="{{ url_for('static',filename="3.gif")}}" alt="я джифка" width="150px" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script>
+  function init() // тут привяжем обработчики и иное
+  {
+    const segment = window.location.pathname.split('/')[1];
+    const segmentTwo = window.location.pathname.split('/')[2];
+    const data = [];
+    data.push(segment);
+    data.push(segmentTwo);
+    console.log(segment)
+    console.log(segmentTwo)
+    var url = '/process';
+    sendAjax(url, segment, segmentTwo)
+      
+  }
+  
+
+  function sendAjax(url, segment, segmentTwo)
+  {
+    console.log(url, segment, segmentTwo)
+    $.ajax({ //  сам запрос
+    type: 'POST',
+    url: url,
+    data: {'data':segment, 'data_two': segmentTwo}, // данные которые передаём  серверу
+    success: function(answer) {
+        window.location.replace(`/show_video/${segment}/${segmentTwo}`)
+        },
+    });
+  }
+  window.onload = init();
+</script>
+
+{% endblock %}

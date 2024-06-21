@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<body class="bg-body-tertiary b-example-divider">
+  <form method="post" enctype="multipart/form-data">
+    <div class="container py-5">
+      <a href="{{ url_for('take_photo') }}">
+        <div style="padding: 20px 0px 20px 0px">
+          <i class="fa-solid fa-arrow-right fa-flip-horizontal fa-xl" style='color: #fafafa'"></i>
+        </div>
+      </a>
+      <div class="px-3 py-2 bg-body rounded shadow-lg p-3 mb-5 bg-body rounded">
+        <label for="id_img" class="form-label">Изображение содержимого фото</label>
+        <div>
+            <div class="mb-4 d-flex justify-content-center">
+                <img id="selectedImage" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                      alt="example placeholder" style="width: 500px; border-radius: 15px;" />
+            </div>
+            <div class="d-flex justify-content-center">
+                
+            </div>
+        </div>
+      </div>
+      <div class="mb-3 ">
+        <label for="formFileLg" class="form-label">Фото</label>
+        <input class="form-control form-control-lg shadow-lg" name="file" id="formFileLg" type="file" accept="image/png, image/jpeg" onchange = "displaySelectedImage(event, 'selectedImage')" required>
+      </div>
+      {% if status %}
+        <button class="btn btn-primary" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span class="visually-hidden">Загрузка...</span>
+        </button>
+      {% else %}
+        <button type="submit" class="btn btn-success col-12 shadow-lg">Загрузить</button>
+      {% endif %}
+    </div>
+  </form> 
+</body>
+
+<script>
+  function displaySelectedImage(event, elementId) {
+          const selectedImage = document.getElementById(elementId);
+          const fileInput = event.target;
+      
+          if (fileInput.files && fileInput.files[0]) {
+              const reader = new FileReader();
+      
+              reader.onload = function(e) {
+                  selectedImage.src = e.target.result;
+              };
+      
+              reader.readAsDataURL(fileInput.files[0]);
+          }
+
+  }
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<body class="bg-body-tertiary b-example-divider">
+  <div class="container">
+    <a href="{{ url_for('take_photo') }}">
+      <div style="padding: 20px 0px 20px 0px">
+        <i class="fa-solid fa-arrow-right fa-flip-horizontal fa-xl" style='color: #fafafa'"></i>
+      </div>
+    </a>
+  {% for item in list %}
+    
+      <div class="px-3 py-2 bg-body rounded shadow-lg p-3 mb-5 bg-body rounded row">
+        <label for="id_img" class="form-label">{{loop.index}} из {{list|length}}</label>
+        <img src="{{ url_for('static',filename=item)}}" class="justify-content-center" width="1000px">
+      </div>
+      
+    
+  {% endfor %}
+
+  </div>
+
+</body>
+
+{% endblock %}

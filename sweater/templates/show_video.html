@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<body class="bg-body-tertiary b-example-divider">
+  <form method="post" enctype="multipart/form-data">
+    <div class="container py-5">
+      <a href="{{ url_for('photo') }}">
+        <div style="padding: 20px 0px 20px 0px">
+          <i class="fa-solid fa-arrow-right fa-flip-horizontal fa-xl" style='color: #fafafa'"></i>
+        </div>
+      </a>
+      <div class="px-3 py-2 bg-body rounded shadow-lg p-3 mb-5 bg-body rounded">
+        <label for="id_img" class="form-label">Результат</label>
+        <div>
+            <div class="mb-4 d-flex justify-content-center">
+
+                <video controls width="500px" style="border-radius: 15px;">
+                        <source src="{{ url_for('static',filename=filename)}}" type="video/mp4" />
+                      
+                        Download the
+                        <a href="{{ url_for('static',filename=filename)}}">MP4</a>
+                        video.
+                </video>
+            </div>
+            <div class="d-flex justify-content-center">
+                
+            </div>
+        </div>
+      </div>
+    </div>
+  </form> 
+</body>
+
+
+
+{% endblock %}

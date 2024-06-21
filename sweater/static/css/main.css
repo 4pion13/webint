@@ -1,0 +1,7 @@
+div#loading {
+    width: 100px;
+    height: 100px;
+    display: none;
+    background: url(/Users/romannovikov/Documents/Проекты/intensive/.venv/sweater/static/2.gif) no-repeat;
+    cursor: wait;
+    }

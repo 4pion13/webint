@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<body class="bg-body-tertiary b-example-divider">
+  <div id="loading"></div>
+  <form method="post" enctype="multipart/form-data">
+    <div class="container py-5" id="content">
+      <a href="{{ url_for('take_photo') }}">
+        <div style="padding: 20px 0px 20px 0px">
+          <i class="fa-solid fa-arrow-right fa-flip-horizontal fa-xl" style='color: #fafafa'"></i>
+        </div>
+      </a>
+      <div class="mb-3 ">
+        <label for="formFileLg" class="form-label">Видео</label>
+        <input class="form-control form-control-lg shadow-lg" name="file" id="formFileLg" type="file" accept="video/mp4" onchange = "displaySelectedImage(event, 'selectedImage')" required>
+      </div>
+      {% if status %}
+        <button class="btn btn-primary" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span class="visually-hidden">Загрузка...</span>
+        </button>
+      {% else %}
+        <button type="submit" name="anything_submit" class="btn btn-success col-12 shadow-lg" onclick="loading()">Загрузить</button>
+      {% endif %}
+    </div>
+  </form>
+
+</body>
+
+
+{% endblock %}
